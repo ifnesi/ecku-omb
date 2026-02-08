@@ -144,13 +144,13 @@ https://docs.confluent.io/cloud/current/networking/ccloud-console-access.html#co
 
 You need:
 
-- **Terraform CLI** installed.
-- An **AWS** account with permissions to create:
+- [**Terraform CLI**(https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)] installed.
+- An [**AWS**](https://aws.amazon.com/console/) account with permissions to create:
   - VPC, subnets, security groups
   - EC2 instances (Amazon Linux 2023)
   - TLS key pair
   - Internet Gateway and route tables
-- A **Confluent Cloud** account with **Cloud resource management** access to create:
+- A [**Confluent Cloud**](https://www.confluent.io/lp/tryfree/) account with **Cloud resource management** access to create:
   - An environment and Enterprise Kafka cluster
   - Cluster API key/secret
   - Client quota
@@ -202,7 +202,9 @@ Required variables include:
   - `CONFLUENT_CLOUD_API_KEY` – Cloud resource management API key.
   - `CONFLUENT_CLOUD_API_SECRET` – Cloud resource management API secret.
 
-Check `.env_example` (and `variables.tf`) for any additional optional variables you may want to override (e.g. region, number of OMB instances).
+Follow [these steps](https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/manage-api-keys.html#add-an-api-key) to learn how to create the Cloud resource management API key/secret.
+
+Check `.env` and `variables.tf` for any additional optional variables you may want to override (e.g. region, number of OMB instances).
 
 ### 7.3. Initialise and plan
 
@@ -266,7 +268,6 @@ ssh -i ~/.ssh/pni-test-key.pem ec2-user@<PROXY_PUBLIC_IP>
 ```bash
 # Example for OMB instance #0
 ssh -i ~/.ssh/pni-test-key.pem ec2-user@<OMB0_PUBLIC_IP>   # Public
-ssh -i ~/.ssh/pni-test-key.pem ec2-user@10.x.x.x           # Private
 
 # ... repeat for OMB instance #1, #2, etc.
 ```
