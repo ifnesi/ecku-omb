@@ -63,7 +63,6 @@ EOFDRIVER
 cat > $INSTALL_DIR/workloads/workload.yaml <<EOFWORKLOAD
 name: ConfluentCloud-60in-180out
 topics: 10
-topicName: benchmark-test
 partitionsPerTopic: 12
 
 # Scaling for m6i.2xlarge (8 vCPU | 32 GB RAM | Up to 12.5 Gbps)
