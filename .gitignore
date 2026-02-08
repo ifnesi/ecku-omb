@@ -9,4 +9,6 @@ terraform/.terraform.tfstate.lock.info
 terraform/terraform.tfstate.backup
 terraform/terraform.tfstate
 
+.DS_Store
+
 .env
