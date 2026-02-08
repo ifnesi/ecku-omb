@@ -394,7 +394,7 @@ By default (three OMB instances at ~1 eCKU each), you should see approximately:
 - **Write**: ~180 MB/s aggregate  
 - **Read**: ~540 MB/s aggregate  
 
-…and auto‑scale to 3–4 eCKUs depending on actual throughput.
+...and auto‑scale to 3–4 eCKUs depending on actual throughput.
 
 ### 9.4. Stream Lineage
 
