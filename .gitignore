@@ -1,0 +1,12 @@
+notes.txt
+
+Dockerfile
+docker-compose.yml
+
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/.terraform.tfstate.lock.info
+terraform/terraform.tfstate.backup
+terraform/terraform.tfstate
+
+.env
