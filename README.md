@@ -109,34 +109,6 @@ The Enterprise Kafka cluster is provisioned with **AWS PNI networking**:
   - OMB workloads and the NGINX proxy reach the cluster via **private connectivity** from your AWS VPC.
   - The public Confluent endpoints are not used for data plane in this demo.
 
-- **From EC2 to Kafka REST**
-
-For each EC2 proxy/OMB instance, you can verify connectivity to the REST endpoint on **port 443**:
-
-```bash
-curl --request GET \
-    --url https://<KAFKA_REST_ENDPOINT>:443/kafka/v3/clusters/<CLUSTER_ID>/topics \
-    -u "<API_KEY>:<API_SECRET>"
-```
-
-- **From your laptop to Kafka REST / Console**
-
-  After Terraform has configured the NGINX proxy, you can:
-
-  1. Add a host mapping on your laptop:
-
-```bash
-echo "<PROXY_PUBLIC_IP> <KAFKA_REST_ENDPOINT>" | sudo tee -a /etc/hosts
-```
-
-  2. Send a direct cURL from your laptop via the proxy:
-
-```bash
-curl --request GET \
-    --url https://<KAFKA_REST_ENDPOINT>:443/kafka/v3/clusters/<CLUSTER_ID>/topics \
-    -u "<API_KEY>:<API_SECRET>"
-```
-
 See the Confluent docs for proxy‑based Console access:  
 https://docs.confluent.io/cloud/current/networking/ccloud-console-access.html#configure-a-proxy
 
@@ -274,11 +246,37 @@ ssh -i ~/.ssh/pni-test-key.pem ec2-user@<OMB0_PUBLIC_IP>   # Public
 
 ### 8.2. Validate PNI connectivity from each instance
 
-On each EC2 proxy/OMB instance, run the REST `curl` command from section **4** to confirm:
+- **From EC2 to Kafka REST**
+
+For each EC2 proxy/OMB instance, you can verify connectivity to the REST endpoint on **port 443**:
 
 - DNS for the Kafka REST endpoint resolves correctly inside the VPC.
 - TLS and authentication work.
 - Connectivity flows over PNI (no public internet path).
+
+```bash
+curl --request GET \
+    --url https://<KAFKA_REST_ENDPOINT>:443/kafka/v3/clusters/<CLUSTER_ID>/topics \
+    -u "<API_KEY>:<API_SECRET>"
+```
+
+- **From your laptop to Kafka REST / Console**
+
+  After Terraform has configured the NGINX proxy, you can:
+
+  1. Add a host mapping on your laptop (`/etc/hosts`):
+
+```bash
+echo "<PROXY_PUBLIC_IP> <KAFKA_REST_ENDPOINT>" | sudo tee -a /etc/hosts
+```
+
+  2. Send a direct cURL from your laptop via the proxy:
+
+```bash
+curl --request GET \
+    --url https://<KAFKA_REST_ENDPOINT>:443/kafka/v3/clusters/<CLUSTER_ID>/topics \
+    -u "<API_KEY>:<API_SECRET>"
+```
 
 ### 8.3. Observe OMB results in real‑time
 
