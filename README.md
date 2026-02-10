@@ -121,7 +121,7 @@ You need:
   - VPC, subnets, security groups
   - EC2 instances (Amazon Linux 2023)
   - TLS key pair
-  - Internet Gateway and route tables
+  - Internet Gateway and routing tables
 - A [**Confluent Cloud**](https://www.confluent.io/lp/tryfree/) account with **Cloud resource management** access to create:
   - An environment and Enterprise Kafka cluster
   - Cluster API key/secret
@@ -167,8 +167,12 @@ cp .env_example .env
 Required variables include:
 
 - **AWS**
+  - `AWS_ACCESS_KEY_ID` - Your AWS Access Key.(*)
+  - `AWS_SECRET_ACCESS_KEY` - Your AWS Secret Key.(*)
   - `TF_VAR_aws_account_id` – Your AWS account number.
   - `TF_VAR_owner` – Email address to be set as an owner tag on AWS resources.
+
+(*) Alternatively, if you have the [AWS CLI](https://aws.amazon.com/cli/) installed, you can configure credentials via `aws configure` instead of setting `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` manually.
 
 - **Confluent Cloud**
   - `CONFLUENT_CLOUD_API_KEY` – Cloud resource management API key.
@@ -201,7 +205,7 @@ When Terraform completes, capture the demo output:
 terraform output demo
 ```
 
-This will print:
+This will print the required steps to finish the demo setup:
 
 - Confluent Cloud environment and cluster IDs.
 - Kafka REST endpoint.
