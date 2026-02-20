@@ -56,9 +56,9 @@ EOFDEMO
 
 output cc_secrets {
      value = <<-EOFSECRETS
----------------------------
-1. CONFLUENT CLOUD SECERETS
----------------------------
+--------------------------
+1. CONFLUENT CLOUD SECRETS
+--------------------------
 Environment ID.....: ${resource.confluent_environment.benchmark.id}
 Kafka Cluster ID...: ${confluent_kafka_cluster.enterprise.id}
 Kafka REST Endpoint: ${trimprefix(trimsuffix(local.pni_kafka_rest_endpoint, ":443"), "https://")}
