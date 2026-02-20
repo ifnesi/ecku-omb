@@ -53,3 +53,18 @@ EOFDEMO
 
   sensitive = true
 }
+
+output cc_secrets {
+     value = <<-EOFSECRETS
+---------------------------
+1. CONFLUENT CLOUD SECERETS
+---------------------------
+Environment ID.....: ${resource.confluent_environment.benchmark.id}
+Kafka Cluster ID...: ${confluent_kafka_cluster.enterprise.id}
+Kafka REST Endpoint: ${trimprefix(trimsuffix(local.pni_kafka_rest_endpoint, ":443"), "https://")}
+Kafka API Key......: ${confluent_api_key.app-benchmark-kafka-api-key.id}
+Kafka API Secret...: ${confluent_api_key.app-benchmark-kafka-api-key.secret}
+      
+EOFSECRETS
+  sensitive = true
+}
